@@ -1,39 +1,30 @@
-import { Button } from "@mui/material";
+import { Button, SxProps } from "@mui/material";
 
 interface CustomButtonProps {
     currentTab: number;
+    onClick?: () => void; // ✅ добавь это
+    sx?: SxProps;
+    text:string;
+    variant:string;
+    
     
   }
-  
-   export const CustomButton: React.FC<CustomButtonProps> = ({ currentTab }) => {
-    const handleClick = () => {
-      switch (currentTab) {
-        case 0:
-          console.log("Открыть форму: Информация");
-          break;
-        case 1:
-          console.log("Открыть форму: Реквизиты");
-          break;
-        case 2:
-          console.log("Открыть форму: Контакты");
-          break;
-        case 3:
-          console.log("Открыть форму: Документы");
-          break;
-        default:
-          console.log("Неизвестный таб");
-      }
-    };
-  
+  const CustomButton = ({ text, onClick, sx }: CustomButtonProps) => {
     return (
       <Button
         variant="contained"
         color="primary"
-        sx={{ width: 290, height: 42, borderRadius: "10px", mt:'70px' }}
-        onClick={handleClick}
+        onClick={onClick}
+        sx={{
+          borderRadius: "10px",
+          height: 42,
+          ...sx, // применим кастомные стили
+        }}
       >
-        Редактировать
+        {text}
       </Button>
     );
   };
+  
   export default CustomButton;
+  

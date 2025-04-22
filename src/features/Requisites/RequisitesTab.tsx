@@ -1,20 +1,14 @@
 // src/features/Requisites/RequisitesTab.tsx
-import { Box, Alert, AlertTitle, Button } from "@mui/material";
-import { useState } from "react";
-import RequisitesDialog from "./RequisitesDialog";
+import { Box, Alert, AlertTitle } from "@mui/material";
+
 import { useStore } from "../../store/GeneralStore";
 
 const RequisitesTab = () => {
-  
-    const [open, setOpen] = useState(false);
-    const handleClick = () => setOpen(true);
-    const handleClose = () => setOpen(false);
- 
+   
 const data = useStore((state) => state.requisitesData);
-console.log('=====requiriestDAATAAA======',data)
 
-    // Общие стили для всех алертов
-  const alertSx = {
+
+const alertSx = {
     icon: false,
     severity: "info" as const,
     variant: "standard" as const,
@@ -63,7 +57,7 @@ console.log('=====requiriestDAATAAA======',data)
           boxSizing: "border-box",
         }}
       >
-        {/* 1. Две колонки */}
+        
         <Box sx={{ display: "flex", gap: 5,  }}>
           <Alert {...alertSx} >
             <AlertTitle> УНП</AlertTitle>
@@ -75,19 +69,19 @@ console.log('=====requiriestDAATAAA======',data)
           </Alert>
         </Box>
 
-        {/* 2. Full‑width */}
+
         <Alert  {...longerAlertSx}>
           <AlertTitle> Юридический адрес</AlertTitle>
           {data?.juridicalAddress || ''}
         </Alert>
 
-        {/* 3. Full‑width */}
+        
         <Alert {...longerAlertSx} >
           <AlertTitle >Почтовый индекс</AlertTitle>
           {data?.postalIndex || ''}
         </Alert>
 
-        {/* 4. Две колонки */}
+
         <Box sx={{ display: "flex", gap: 2 }}>
           <Alert {...alertSx}>
             <AlertTitle>Расчетный счет</AlertTitle>
@@ -99,7 +93,7 @@ console.log('=====requiriestDAATAAA======',data)
           </Alert>
         </Box>
 
-        {/* 5. Две колонки */}
+
         <Box sx={{ display: "flex", gap: 2 }}>
           <Alert {...alertSx}>
             <AlertTitle>БИК</AlertTitle>
@@ -112,24 +106,8 @@ console.log('=====requiriestDAATAAA======',data)
         </Box>
       </Box>
 
-      {/* Кнопка «Редактировать» */}
-      <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
-        <Button
-          variant="contained"
-          onClick={handleClick}
-          sx={{
-            width: 290,
-            height: 42,
-            borderRadius: "10px",
-            bgcolor: "#CD0C0D",
-            textTransform: "none",
-            
-          }}
-        >
-          РЕДАКТИРОВАТЬ
-        </Button>
-        <RequisitesDialog open={open} onClose={handleClose} />
-      </Box>
+      
+      
     </>
   );
 };

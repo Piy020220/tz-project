@@ -1,4 +1,4 @@
-import { Alert, AlertTitle, Box, Button } from "@mui/material";
+import { Alert, AlertTitle, Box } from "@mui/material";
 import PhotoOutlinedIcon from "@mui/icons-material/PhotoOutlined";
 import {InformationFormData} from '../Schema'
 
@@ -23,7 +23,7 @@ const MainRectangle = ({ data }: MainRectangleProps) => {
     sx={{ 
       display:'flex',
       flexDirection: 'row',
-      justifyContent: "space-between", // расталкиваем детей по краям
+      justifyContent: "space-between", 
       alignItems: 'center',
       px: 2,    
       py:2, 
@@ -55,7 +55,7 @@ const MainRectangle = ({ data }: MainRectangleProps) => {
             objectFit: "cover",
           }}
         />
-        {/* Иконка по центру контейнера */}
+        
         {!data?.image && (
           <PhotoOutlinedIcon
             sx={{

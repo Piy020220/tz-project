@@ -18,11 +18,6 @@ const alphanumCaps8Schema = z
 .string()
 .regex(/^[A-Z0-9]{8}$/, "Введите корректные данные (8 символов)");
 
-
-
-
-
-
 export const Schema = z.object({
    
     unp: nineDigitSchema,

@@ -1,4 +1,3 @@
-// src/features/Requisites/RequisitesDialog.tsx
 
 import {
     Box,
@@ -9,10 +8,10 @@ import {
     Typography,
   } from "@mui/material";
 
-
-import {useStore} from '../../store/GeneralStore'
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+
+import {useStore} from '../../store/GeneralStore'
 import {RequisitesFormData, Schema } from "./Schema";
 
 
@@ -25,7 +24,6 @@ import {RequisitesFormData, Schema } from "./Schema";
     const {
         register,
         handleSubmit,
-        setValue,
         formState: { errors, isSubmitting },
       } = useForm<RequisitesFormData>({
         resolver: zodResolver(Schema),
@@ -54,24 +52,24 @@ import {RequisitesFormData, Schema } from "./Schema";
             p: 0,
             borderRadius: 3,
             overflow: "visible",
-            mt: "137px", // верхний отступ
+            mt: "137px", 
           },
         }}
       >
         <DialogContent
           sx={{
-            px: 6, // лево и право по 50px
+            px: 4, 
             py: 4,
             display: "flex",
             flexDirection: "column",
             gap: 4,
           }}
         >
-          <Typography variant="h6" sx={{ fontWeight: 600 }}>
+          <Typography variant="h5" sx={{ fontWeight: 600 }}>
             Заполнение реквизитов
           </Typography>
   
-          {/* УНП и ОКПО */}
+  
           <Box sx={{ display: "flex", gap: 5  }}>
             <TextField
               fullWidth
@@ -84,7 +82,7 @@ import {RequisitesFormData, Schema } from "./Schema";
                 maxWidth: 400,
                 height: 56,
                 "& .MuiOutlinedInput-root": {
-                  borderRadius: "10px", // вот сюда!
+                  borderRadius: "10px", 
                 },
               }}
             />
@@ -95,17 +93,15 @@ import {RequisitesFormData, Schema } from "./Schema";
                 maxWidth: 400,
                 height: 56,
                 "& .MuiOutlinedInput-root": {
-                  borderRadius: "10px", // вот сюда!
+                  borderRadius: "10px", 
                 },
               }}
               {...register("okpo")}
               error={!!errors.okpo}
               helperText={errors.okpo?.message}
-              
             />
           </Box>
-  
-          {/* Юридический адрес */}
+          
           <TextField
             fullWidth
             label="Юридический адрес"
@@ -113,7 +109,7 @@ import {RequisitesFormData, Schema } from "./Schema";
               maxWidth: 840,
               height: 56,
               "& .MuiOutlinedInput-root": {
-                borderRadius: "10px", // вот сюда!
+                borderRadius: "10px", 
               },
             }}
             {...register("juridicalAddress")}
@@ -122,7 +118,7 @@ import {RequisitesFormData, Schema } from "./Schema";
               
           />
   
-          {/* Почтовый адрес */}
+          
           <TextField
             fullWidth
             label="Почтовый адрес"
@@ -130,7 +126,7 @@ import {RequisitesFormData, Schema } from "./Schema";
               maxWidth: 840,
               height: 56,
               "& .MuiOutlinedInput-root": {
-                borderRadius: "10px", // вот сюда!
+                borderRadius: "10px", 
               },
             }}
             {...register("postalIndex")}
@@ -139,7 +135,7 @@ import {RequisitesFormData, Schema } from "./Schema";
             
           />
   
-          {/* Расчетный счет и ЦБУ */}
+          
           <Box sx={{ display: "flex", gap: 5 }}>
             
             <TextField
@@ -173,7 +169,7 @@ import {RequisitesFormData, Schema } from "./Schema";
             />
             </Box>
   
-          {/* БИК и Местонахождение банка */}
+  
           <Box sx={{ display: "flex", gap: 5  }}>
             <TextField
               fullWidth
@@ -183,13 +179,14 @@ import {RequisitesFormData, Schema } from "./Schema";
                 height: 56,
                 "& .MuiOutlinedInput-root": {
                   borderRadius: "10px", 
+                  border:'none'
                 },
               }}
               {...register("bik")}
               error={!!errors.bik}
               helperText={errors.bik?.message}
             />
-            
+
             <TextField
               fullWidth
               label="Местонахождение банка"

@@ -16,7 +16,7 @@ const ConditionsRectangle = ({ data }: ConditionsRectangleProps ) => {
         borderRadius: "10px",
         display: "flex",
         
-        justifyContent: 'center' // равные пробелы
+        justifyContent: 'center' 
       }}
     >
       <ConditionAlert title="Налогообложение" >{data?.taxField || ""} </ConditionAlert>

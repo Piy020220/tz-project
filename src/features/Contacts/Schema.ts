@@ -23,9 +23,6 @@ const emailSchema = z
 .email({ message: "Неверный формат email" });
 
 
-
-
-
 export const Schema = z.object({
    
     name: nameSchema(),

@@ -1,5 +1,7 @@
-// src/features/Contacts/ContactsDialog.tsx
+import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import { IMaskInput } from "react-imask";
 import {
   Dialog,
@@ -10,8 +12,7 @@ import {
   TextField,
   Button,
 } from "@mui/material";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+
 import { ContactsFormData, Schema } from "./Schema";
 import { useStore } from '../../store/GeneralStore';
 
@@ -105,7 +106,6 @@ const {
           />
         </Box>
 
-        {/* 2-й ряд: Должность (full width) */}
         <TextField
           label="Должность"
           
@@ -124,7 +124,6 @@ const {
           helperText={errors.post?.message || 'Выберете должность'}
         />
 
-        {/* 3-й ряд: Телефон (маска) и E‑mail */}
         <Box sx={{ display: "flex", gap: 4.5 }}>
           <TextField
             label="Телефон"

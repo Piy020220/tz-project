@@ -1,14 +1,11 @@
-// UserForm.tsx
+
 import { useForm } from "react-hook-form";
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import { Schema, InformationFormData } from "./Schema";  //userSchema, User
 import { TextField, Button, Box, DialogContent, DialogActions, Dialog, Typography, DialogTitle, InputAdornment, MenuItem } from "@mui/material";
-
-
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useStore } from "../../store/GeneralStore";
 
 
@@ -44,14 +41,12 @@ interface InfoDialogProps {
     
   };
 
-  
-
   console.log("Ошибки:", errors);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const selectedFile = acceptedFiles[0];
     setFile(selectedFile);
-    setValue("image", selectedFile, { shouldValidate: true }); // <-- здесь магия
+    setValue("image", selectedFile, { shouldValidate: true }); 
   }, [setValue]);
   
 
@@ -75,11 +70,11 @@ interface InfoDialogProps {
 
     <DialogContent sx={{ display: "flex", flexDirection: "column", gap: 4, p: 6, background:'#FFFFFF',borderRadius:4 }}>
 
-  {/* сам контент — две колонки */}
+  
   <Box sx={{ display: "flex", gap: 4 }}>
-    {/* левая колонка */}
+    
     <Box sx={{ flex: 1, display: "flex", flexDirection: "column", gap: 5 }}>
-      {/* Upload зона */}
+    
       <Box
         {...getRootProps()}
         sx={{
@@ -106,7 +101,7 @@ interface InfoDialogProps {
         )}
       </Box>
 
-      {/* “Налогообложение” select-поле */}
+
       <TextField
   label="Налогообложение"
   variant="outlined"
@@ -116,14 +111,14 @@ interface InfoDialogProps {
   defaultValue=""
   {...register("taxField" )} 
   sx={{
-    width: 400,            // задаёт ширину
-    height: 56,            // задаёт высоту всего TextField
+    width: 400,          
+    height: 56,          
     '& .MuiOutlinedInput-root': {
-      height: '100%',      // чтобы input занял всю высоту родителя
-      borderRadius: '10px' // скругление
+      height: '100%',    
+      borderRadius: '10px' 
     },
     '& .MuiOutlinedInput-input': {
-      padding: '10px 14px', // внутренняя отступка
+      padding: '10px 14px',
     },
   }}
   
@@ -132,7 +127,7 @@ interface InfoDialogProps {
   <MenuItem value="Без НДС">Без НДС</MenuItem>
 </TextField>
 
-      {/* “Минимальный заказ” поле с суффиксом “Kg” */}
+      
       <TextField
         label="Минимальный заказ"
         variant="outlined"
@@ -152,21 +147,20 @@ interface InfoDialogProps {
           ),
         }}
         sx={{
-          width: 400,            // задаёт ширину
-          height: 56,            // задаёт высоту всего TextField
+          width: 400,           
+          height: 56,           
           '& .MuiOutlinedInput-root': {
-            height: '100%',      // чтобы input занял всю высоту родителя
-            borderRadius: '10px' // скругление
+            height: '100%', 
+            borderRadius: '10px' 
           },
           '& .MuiOutlinedInput-input': {
-            padding: '10px 14px', // внутренняя отступка
+            padding: '10px 14px', 
           },
         }}
         
       />
 </Box>
 
-    {/* правая колонка */}
     <Box sx={{ flex: 1, display: "flex", flexDirection: "column", gap: 5 }}>
       <TextField
         label="Описание"
@@ -179,14 +173,14 @@ interface InfoDialogProps {
         error={!!errors.description}
         helperText={errors.description?.message}
         sx={{
-          width: 400,            // задаёт ширину
-          height: 152,            // задаёт высоту всего TextField
+          width: 400,           
+          height: 152,          
           '& .MuiOutlinedInput-root': {
-            height: '100%',      // чтобы input занял всю высоту родителя
-            borderRadius: '10px' // скругление
+            height: '100%',     
+            borderRadius: '10px' 
           },
           '& .MuiOutlinedInput-input': {
-            padding: '10px 14px', // внутренняя отступка
+            padding: '10px 14px',
           },
         }}
         
@@ -203,14 +197,14 @@ interface InfoDialogProps {
         error={!!errors.additionalInfo}
         helperText={errors.additionalInfo?.message || "Необязательное поле"}
         sx={{
-          width: 400,            // задаёт ширину
-          height: 175,            // задаёт высоту всего TextField
+          width: 400,            
+          height: 175,           
           '& .MuiOutlinedInput-root': {
-            height: '100%',      // чтобы input занял всю высоту родителя
-            borderRadius: '10px' // скругление
+            height: '100%',      
+            borderRadius: '10px'
           },
           '& .MuiOutlinedInput-input': {
-            padding: '10px 14px', // внутренняя отступка
+            padding: '10px 14px', 
           },
         }}
         
@@ -218,7 +212,7 @@ interface InfoDialogProps {
     </Box>
   </Box>
 
-  {/* Кнопка “Сохранить” по центру */}
+ 
   <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
     <Button type="submit" variant="contained" size="large" sx={{background:'#CD0C0D',width:290, height:42, borderRadius:'10px'}}>
       Сохранить

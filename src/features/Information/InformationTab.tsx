@@ -1,4 +1,4 @@
-import {Box,Button} from "@mui/material";
+import {Box} from "@mui/material";
 
 import { useState } from "react";
 import { useStore } from "../../store/GeneralStore";
@@ -17,7 +17,7 @@ export const InformationTab = () => {
   console.log('=====infoDAATAAA======',data)
   
   
-   const handleClick = () => setOpen(true);
+   
    const handleClose = () => setOpen(false);
 
     
@@ -42,15 +42,6 @@ export const InformationTab = () => {
          <ConditionsRectangle data={data}/>
       </Box>
 
-      <Button
-        variant="contained"
-        color="primary"
-        size="large"
-        sx={{ width: 290, height: 42, borderRadius: "10px", mt: "70px",bgcolor:'#CD0C0D' }}
-        onClick={handleClick}
-      >
-        Редактировать
-      </Button>
       <InfoDialog  open={open} onClose={handleClose} />
     </Box>
   );

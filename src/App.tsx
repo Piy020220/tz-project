@@ -1,20 +1,28 @@
 import { useState } from "react";
 import { Container, Tabs, Tab, Box } from "@mui/material";
 import InformationTab from "./features/Information/InformationTab";
-import TittleContentsts from "./features/Information/subcomponents/TittleContents";
+//import TittleContentsts from "./features/Information/subcomponents/TittleContents";
 import CustomButton from "./components/CustomButton";
 import RequisitesTab from "./features/Requisites/RequisitesTab";
 import ContactsTab from "./features/Contacts/ContactsTab";
+import InfoDialog from "./features/Information/InfoDIalog";
+import RequisitesDialog from "./features/Requisites/RequisitesDialog";
+import ContactsDialog from "./features/Contacts/ContactDialog";
 
 
 function App() {
-  const [tabIndex, setTabIndex] = useState(0);
   
+  const [tabIndex, setTabIndex] = useState(0);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setTabIndex(newValue);
-  };
+  }; 
   
+  const handleOpenDialog = () => setDialogOpen(true);
+  const handleCloseDialog = () => setDialogOpen(false);
+
+
   return (
     <Container
       maxWidth="lg"
@@ -23,9 +31,10 @@ function App() {
         minHeight: "100vh",
         position: "relative",
         paddingY: 4,
+        
       }}
     >
-      <TittleContentsts />
+      
 
       <Tabs value={tabIndex} onChange={handleTabChange} sx={{ mb: 3 }}>
         <Tab label="Информация" />
@@ -33,26 +42,36 @@ function App() {
         <Tab label="Контакты" />
         <Tab label="Документы" />
       </Tabs>
-
-      {/* Центрируем контент по макету */}
-     
-        <Box
+      
+        <Box 
         sx={{
           mt: 2,
-          width: "100%",         // тянем на всю ширину родителя
-          maxWidth: 1440,        // но не больше макета
-          mx: "auto",            // центрируем по горизонтали
-     
-            }}
-          >
-  
-            {tabIndex === 0 && <InformationTab />}  
-            {tabIndex === 1 && <RequisitesTab />}    
-            {tabIndex === 2 && <ContactsTab />}
-      </Box>
-      
-      
-    
+          width: "100%",       
+          mx: "auto",           
+        }}
+        >
+          {tabIndex === 0 && <InformationTab />}  
+          {tabIndex === 1 && <RequisitesTab />}    
+          {tabIndex === 2 && <ContactsTab />}
+          </Box>
+          
+          <CustomButton
+          text="РЕДАКТИРОВАТЬ"
+          currentTab={0}    
+          variant="contained"
+          onClick={handleOpenDialog}
+          sx={{
+          mt:9,
+            width: 290,
+            height: 42,
+            borderRadius: "10px",
+            bgcolor: "#CD0C0D",
+            textTransform: "none",
+          }}
+          />
+          {tabIndex === 0 && <InfoDialog open={dialogOpen} onClose={handleCloseDialog} />}
+          {tabIndex === 1 && <RequisitesDialog open={dialogOpen} onClose={handleCloseDialog} />}
+          {tabIndex === 2 && <ContactsDialog open={dialogOpen} onClose={handleCloseDialog} />}
     </Container>
   );
 }
@@ -61,9 +80,5 @@ export default App;
 
 
 
-/*
-        
-        {tabIndex === 3 && <DocumentsTab />}
-        */
 
         

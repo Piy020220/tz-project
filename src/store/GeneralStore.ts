@@ -23,12 +23,12 @@ export const useStore = create<StoreState>((set) => ({
   setData: (info) => set({ data: info }),
   clearData: () => set({ data: null }),
 
-  requisitesData: null,                                    // <== добавили
-  setRequisites: (req) => set({ requisitesData: req }),    // <== добавили
-  clearRequisites: () => set({ requisitesData: null }),    // <== добавили
+  requisitesData: null,                                    
+  setRequisites: (req) => set({ requisitesData: req }),    
+  clearRequisites: () => set({ requisitesData: null }),    
 
-  contactData: null,                                    // <== добавили
-  setContacts: (cont) => set({ contactData: cont }),    // <== добавили
-  clearContacts: () => set({ contactData: null }),    // <== добавили
+  contactData: null,                                    
+  setContacts: (cont) => set({ contactData: cont }),    
+  clearContacts: () => set({ contactData: null }),    
 
 }));

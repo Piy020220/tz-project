@@ -11,13 +11,13 @@ const ConditionAlert: React.FC<ConditionAlertProps> = ({ title, children, sx }) 
   return (
     <Box
       sx={{
-        position: "relative",    // чтобы потом абсолютно позиционировать линию
+        position: "relative", 
         ...((sx as object) || {}), 
       }}
     >
       <Alert
         severity="info"
-        variant="standard"        // без рамки вокруг
+        variant="standard"      
         icon={false}
         sx={{
           width: 360,
@@ -51,15 +51,3 @@ const ConditionAlert: React.FC<ConditionAlertProps> = ({ title, children, sx }) 
 
 export default ConditionAlert;
 
-/*
-
-{borderBottom && (
-  <Box
-    sx={{
-      
-      height: "1px",
-      backgroundColor: "rgba(0,0,0,0.12)",
-      
-    }}
-  />
-)}*/
