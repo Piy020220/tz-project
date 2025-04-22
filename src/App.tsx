@@ -5,7 +5,7 @@ import InformationTab from "./features/Information/InformationTab";
 import CustomButton from "./components/CustomButton";
 import RequisitesTab from "./features/Requisites/RequisitesTab";
 import ContactsTab from "./features/Contacts/ContactsTab";
-import InfoDialog from "./features/Information/InfoDIalog";
+import InfoDialog from "./features/Information/InformationDialog";
 import RequisitesDialog from "./features/Requisites/RequisitesDialog";
 import ContactsDialog from "./features/Contacts/ContactDialog";
 

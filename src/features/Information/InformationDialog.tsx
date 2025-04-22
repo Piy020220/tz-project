@@ -1,6 +1,6 @@
 
-import { useForm } from "react-hook-form";
-import { useCallback, useState } from "react";
+import { useForm, useWatch } from "react-hook-form";
+import { useCallback, useState ,useEffect} from "react";
 import { useDropzone } from "react-dropzone";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -24,19 +24,27 @@ interface InfoDialogProps {
     register,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<InformationFormData>({
     resolver: zodResolver(Schema),
 
   });
 
+  useEffect(() => {
+    if(!open){
+      reset()
+    }
+  },[open, reset])
+  
+
   const setData = useStore((state) => state.setData);
 
   const onSubmit = (data: InformationFormData) => {
     console.log("errors", errors)
     useStore.getState().setData(data);
-    setData(data)
-    onClose()
+    setData(data);
+    onClose();
     console.log("Форма валидна, данные:", data);
     
   };
@@ -46,11 +54,11 @@ interface InfoDialogProps {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const selectedFile = acceptedFiles[0];
     setFile(selectedFile);
-    setValue("image", selectedFile, { shouldValidate: true }); 
+      
   }, [setValue]);
   
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: {
       "image/jpeg": [],
@@ -68,7 +76,7 @@ interface InfoDialogProps {
 
     <DialogTitle sx={{ px: 4, pt: 3 }}>Заполнение информации</DialogTitle>
 
-    <DialogContent sx={{ display: "flex", flexDirection: "column", gap: 4, p: 6, background:'#FFFFFF',borderRadius:4 }}>
+    <DialogContent sx={{ display: "flex", flexDirection: "column", gap: 4, p: 6, background:'#FFFFFF', borderRadius:4 }}>
 
   
   <Box sx={{ display: "flex", gap: 4 }}>
@@ -213,14 +221,13 @@ interface InfoDialogProps {
   </Box>
 
  
-  <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
-    <Button type="submit" variant="contained" size="large" sx={{background:'#CD0C0D',width:290, height:42, borderRadius:'10px'}}>
-      Сохранить
-    </Button>
-  </Box>
-</DialogContent>
-<DialogActions sx={{ px: 4, pb: 3 }}>
-
+    <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+      <Button type="submit" variant="contained" size="large" sx={{background:'#CD0C0D', width:290, height:42, borderRadius:'10px'}}>
+        Сохранить
+      </Button>
+    </Box>
+    </DialogContent>
+    <DialogActions sx={{ px: 4, pb: 3 }}>
     </DialogActions>
   </Dialog>
   );

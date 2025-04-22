@@ -5,8 +5,8 @@ interface CategoriesRectangleProps {
   data: InformationFormData | null;
 }
 
-export const CategoriesRectangle = ({ data }: CategoriesRectangleProps) => {
-  return (
+export const CategoriesRectangle = ({ data }: CategoriesRectangleProps) => ( 
+  
     <Box
     sx={{
       borderRadius: "10px",
@@ -32,6 +32,6 @@ export const CategoriesRectangle = ({ data }: CategoriesRectangleProps) => {
   
     </Box>
   );
-};
+
 
 export default CategoriesRectangle;

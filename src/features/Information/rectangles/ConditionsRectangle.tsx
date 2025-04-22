@@ -6,9 +6,9 @@ interface ConditionsRectangleProps {
   data: InformationFormData | null;
 }
 
-const ConditionsRectangle = ({ data }: ConditionsRectangleProps ) => {
+const ConditionsRectangle = ({ data }: ConditionsRectangleProps ) => ( 
   
-  return (
+  
     <Box
       sx={{
         flexDirection: 'column', 
@@ -23,7 +23,7 @@ const ConditionsRectangle = ({ data }: ConditionsRectangleProps ) => {
       <ConditionAlert title="Минимальный заказ" >{data?.weight || ""} </ConditionAlert>
       <ConditionAlert title="Дополнительные условия продажи">{data?.additionalInfo || ""} </ConditionAlert>
     </Box>
+  
   );
-};
 
 export default ConditionsRectangle;

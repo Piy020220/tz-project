@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 
 import {useStore} from '../../store/GeneralStore'
 import {RequisitesFormData, Schema } from "./Schema";
+import { useEffect } from "react";
 
 
   interface RequisitesDialogProps {
@@ -24,7 +25,8 @@ import {RequisitesFormData, Schema } from "./Schema";
     const {
         register,
         handleSubmit,
-        formState: { errors, isSubmitting },
+        reset,
+        formState: { errors },
       } = useForm<RequisitesFormData>({
         resolver: zodResolver(Schema),
     
@@ -38,7 +40,29 @@ import {RequisitesFormData, Schema } from "./Schema";
         onClose()
         console.log("Форма валидна, данные:", data);  
       };
-    
+
+      const textFieldSx = {
+        maxWidth: 400,
+        height: 56,
+        "& .MuiOutlinedInput-root": {
+          borderRadius: "10px",
+        },
+      };
+
+      const longerTextFieldSx = {
+        maxWidth: 840,
+        height: 56,
+        "& .MuiOutlinedInput-root": {
+          borderRadius: "10px", 
+        },
+      };
+      
+      
+      useEffect(() => {
+        if(!open){
+          reset()
+        }
+      },[open, reset])
     
     return (
       <Dialog component="form"
@@ -78,24 +102,12 @@ import {RequisitesFormData, Schema } from "./Schema";
               error={!!errors.unp}
               helperText={errors.unp?.message}
               
-              sx={{
-                maxWidth: 400,
-                height: 56,
-                "& .MuiOutlinedInput-root": {
-                  borderRadius: "10px", 
-                },
-              }}
+              sx={textFieldSx}
             />
             <TextField
               fullWidth
               label="ОКПО"
-              sx={{
-                maxWidth: 400,
-                height: 56,
-                "& .MuiOutlinedInput-root": {
-                  borderRadius: "10px", 
-                },
-              }}
+              sx={textFieldSx}
               {...register("okpo")}
               error={!!errors.okpo}
               helperText={errors.okpo?.message}
@@ -105,49 +117,26 @@ import {RequisitesFormData, Schema } from "./Schema";
           <TextField
             fullWidth
             label="Юридический адрес"
-            sx={{
-              maxWidth: 840,
-              height: 56,
-              "& .MuiOutlinedInput-root": {
-                borderRadius: "10px", 
-              },
-            }}
+            sx={longerTextFieldSx}
             {...register("juridicalAddress")}
             error={!!errors.juridicalAddress}
             helperText={errors.juridicalAddress?.message}
               
           />
-  
-          
           <TextField
             fullWidth
             label="Почтовый адрес"
-            sx={{
-              maxWidth: 840,
-              height: 56,
-              "& .MuiOutlinedInput-root": {
-                borderRadius: "10px", 
-              },
-            }}
+            sx={longerTextFieldSx}
             {...register("postalIndex")}
             error={!!errors.postalIndex}
             helperText={errors.postalIndex?.message}
-            
           />
-  
           
           <Box sx={{ display: "flex", gap: 5 }}>
-            
             <TextField
               fullWidth
               label="Расчетный счет"
-              sx={{
-                maxWidth: 400,
-                height: 56,
-                "& .MuiOutlinedInput-root": {
-                  borderRadius: "10px", 
-                },
-              }}
+              sx={textFieldSx}
               {...register("iban")}
               error={!!errors.iban}
               helperText={errors.iban?.message}
@@ -156,13 +145,7 @@ import {RequisitesFormData, Schema } from "./Schema";
             <TextField
               fullWidth
               label="ЦБУ"
-              sx={{
-                maxWidth: 400,
-                height: 56,
-                "& .MuiOutlinedInput-root": {
-                  borderRadius: "10px", 
-                },
-              }}
+              sx={textFieldSx}
               {...register("cbu")}
               error={!!errors.cbu}
               helperText={errors.cbu?.message}
@@ -174,14 +157,7 @@ import {RequisitesFormData, Schema } from "./Schema";
             <TextField
               fullWidth
               label="БИК"
-              sx={{
-                maxWidth: 400,
-                height: 56,
-                "& .MuiOutlinedInput-root": {
-                  borderRadius: "10px", 
-                  border:'none'
-                },
-              }}
+              sx={textFieldSx}
               {...register("bik")}
               error={!!errors.bik}
               helperText={errors.bik?.message}

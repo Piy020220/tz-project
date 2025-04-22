@@ -6,7 +6,7 @@ import { useStore } from "../../store/GeneralStore";
 import MainRectangle from "./rectangles/MainRectangle";
 import CategoriesRectangle from "./rectangles/CategoriesRectangle";
 import ConditionsRectangle from "./rectangles/ConditionsRectangle";
-import InfoDialog from "./InfoDIalog";
+import InfoDialog from "./InformationDialog";
 
 
 export const InformationTab = () => {
@@ -15,12 +15,8 @@ export const InformationTab = () => {
   const data = useStore((state) => state.data);
 
   console.log('=====infoDAATAAA======',data)
-  
-  
    
    const handleClose = () => setOpen(false);
-
-    
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", }}>
@@ -33,13 +29,13 @@ export const InformationTab = () => {
           
         }}
       >
-        <MainRectangle  data={data}/>
+        <MainRectangle data={data}/>
       </Box>
 
       <Box sx={{ display: "flex",gap: 9,flexDirection: 'row', justifyContent: 'flex-start',  mt: 2,     }}>
         
         <CategoriesRectangle data={data} />          
-         <ConditionsRectangle data={data}/>
+        <ConditionsRectangle data={data} />
       </Box>
 
       <InfoDialog  open={open} onClose={handleClose} />

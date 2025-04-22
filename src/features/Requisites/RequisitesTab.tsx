@@ -44,7 +44,6 @@ const alertSx = {
 
 
   return (
-    <>
       <Box
         sx={{
           mx: "auto",
@@ -105,10 +104,6 @@ const alertSx = {
           </Alert>
         </Box>
       </Box>
-
-      
-      
-    </>
   );
 };
 

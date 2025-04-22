@@ -8,65 +8,51 @@ interface MainRectangleProps {
 }
 
 
-const MainRectangle = ({ data }: MainRectangleProps) => {
+const MainRectangle = ({ data }: MainRectangleProps) => (
 
-  
-  const imageSrc = data?.image
-  ? URL.createObjectURL(data.image)
-  : "/placeholder.jpg";
-
-
-  
-  return (
-    
+<Box
+sx={{ 
+  display:'flex',
+  flexDirection: 'row',
+  justifyContent: "space-between", 
+  alignItems: 'center',
+  px: 2,    
+  py:2, 
+  gap: 5,
+  border: "2px solid #0000001F",
+  borderRadius: "8px"
+}}
+>
+  <Box
+  sx={{
+    position: "relative",   
+    width: 290,
+    height: 200,
+    mr: 2,                  
+    overflow: "hidden",
+    borderRadius: "8px",
+    backgroundColor: "grey",
+  }}
+  >
     <Box
-    sx={{ 
-      display:'flex',
-      flexDirection: 'row',
-      justifyContent: "space-between", 
-      alignItems: 'center',
-      px: 2,    
-      py:2, 
-      gap: 5,
-      border: "2px solid #0000001F",
-      borderRadius: "8px"
-  
-      }}
-    >
-    
-    <Box
-        sx={{
-          position: "relative",   
-          width: 290,
-          height: 200,
-          mr: 2,                  
-          overflow: "hidden",
-          borderRadius: "8px",
-          backgroundColor: "grey",
-        }}
-      >
-        <Box
-          component="img"
-          src={imageSrc}
-          alt="placeholder"
-          sx={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-          }}
-        />
-        
+    component="img"
+    sx={{
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+    }}
+  />
         {!data?.image && (
-          <PhotoOutlinedIcon
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: 64,
-              height: 64,
-              color: "rgba(255,255,255,0.8)",
-            }}
+        <PhotoOutlinedIcon
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 64,
+          height: 64,
+          color: "rgba(255,255,255,0.8)",
+        }}
           />
         )}
       </Box>
@@ -89,6 +75,5 @@ const MainRectangle = ({ data }: MainRectangleProps) => {
       </Alert> 
     </Box>
   );
-};
 
 export default MainRectangle;

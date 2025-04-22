@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { IMaskInput } from "react-imask";
@@ -23,13 +23,13 @@ interface ContactsDialogProps {
 
 const ContactsDialog = ({ open, onClose }:  ContactsDialogProps) => {
   
-const [phone, setPhone] = useState("");
 const setData = useStore((state) => state.setContacts);
   
 const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    reset,
+    formState: { errors },
   } = useForm<ContactsFormData>({
     resolver: zodResolver(Schema),
   });
@@ -39,8 +39,21 @@ const {
     setData(data)
     onClose()
     console.log("Форма валидна, данные:", data);
-    
   };
+
+   const textFieldSx = {
+    maxWidth: 400,
+    height: 56,
+    "& .MuiOutlinedInput-root": {
+      borderRadius: "10px",
+    },
+  };
+
+  useEffect(() => {
+    if(!open){
+      reset()
+    }
+  },[open,reset])
 
   return (
     <Dialog component="form"
@@ -69,36 +82,20 @@ const {
           gap: 3,
         }}
       >
-        {/* 1-й ряд: Фамилия и Имя */}
         <Box sx={{ display: "flex", gap: 4.5 }}>
           <TextField
             label="Фамилия"
-            fullWidth
             size="small"
-            sx={{
-                maxWidth: 400,
-                height: 56,
-                "& .MuiOutlinedInput-root": {
-                  borderRadius: "10px", 
-                },
-              }}
+            sx={textFieldSx}
             {...register("lastName")}
             error={!!errors.lastName}
             helperText={errors.lastName?.message}
-
-          />
-          <TextField
+             />
+             
+             <TextField
             label="Имя"
-            fullWidth
             size="small"
-            sx={{
-                maxWidth: 400,
-                height: 56,
-                "& .MuiOutlinedInput-root": {
-                  borderRadius: "10px", 
-                },
-              }}
-            
+            sx={textFieldSx}
             {...register("name")}
             error={!!errors.name}
             helperText={errors.name?.message}
@@ -108,7 +105,6 @@ const {
 
         <TextField
           label="Должность"
-          
           fullWidth
           size="small"
           sx={{
@@ -118,7 +114,6 @@ const {
               borderRadius: "10px", 
             },
           }}
-        
           {...register("post")}
           error={!!errors.post}
           helperText={errors.post?.message || 'Выберете должность'}
@@ -129,14 +124,7 @@ const {
             label="Телефон"
             fullWidth
             size="small"
-            sx={{
-                maxWidth: 400,
-                height: 56,
-                "& .MuiOutlinedInput-root": {
-                  borderRadius: "10px", 
-                },
-              }}
-            
+            sx={textFieldSx}
             {...register("phoneNum")}
             error={!!errors.phoneNum}
             helperText={errors.phoneNum?.message}
@@ -146,8 +134,6 @@ const {
                 mask: '+{375} (00) 000-00-00',
               },
             }}
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
           />
 
           <TextField
@@ -155,14 +141,7 @@ const {
             type="email"
             fullWidth
             size="small"
-            sx={{
-                maxWidth: 400,
-                height: 56,
-                "& .MuiOutlinedInput-root": {
-                  borderRadius: "10px", 
-                },
-              }}
-            
+            sx={textFieldSx}
             {...register("mail")}
             error={!!errors.mail}
             helperText={errors.mail?.message}

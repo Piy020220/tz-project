@@ -24,15 +24,10 @@ const alertSx = {
 
 
 const ContactsTab = () => {
-
-    const [open, setOpen] = useState(false);
+    
     const data = useStore((state) => state.contactData);
-
-    const handleClose = () => setOpen(false);
-  
-  
-
-  return (
+    
+    return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 5 , }}>
       <Box
         sx={{
@@ -77,8 +72,6 @@ const ContactsTab = () => {
           </Alert>
         </Box>
       </Box>
-
-    <ContactsDialog open={open} onClose={handleClose}/>
     </Box>
   );
 };
